@@ -74,3 +74,28 @@ def get_expired(items, in_advance_days=0):
             expired_items.append((title, total_expired_amount))
             
     return expired_items
+
+goods = {}
+
+today = date.today()
+yesterday_str = (today - timedelta(days=1)).strftime(DATE_FORMAT)
+tomorrow_str = (today + timedelta(days=1)).strftime(DATE_FORMAT)
+next_week_str = (today + timedelta(days=7)).strftime(DATE_FORMAT)
+
+add(goods, 'Яйца', 10, next_week_str)
+add(goods, 'Яйца', 5, yesterday_str)
+add(goods, 'Вода', 2.5)
+print(goods)
+
+add_by_note(goods, f'Яйца гусиные 4 {tomorrow_str}')
+add_by_note(goods, 'Макароны 1.5')
+print(goods)
+
+print(find(goods, 'яйц'))
+print(find(goods, 'молоко'))
+
+print(get_amount(goods, 'яйц'))
+print(get_amount(goods, 'вода'))
+
+print(get_expired(goods))
+print(get_expired(goods, in_advance_days=2))
