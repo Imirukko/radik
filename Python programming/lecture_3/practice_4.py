@@ -39,7 +39,7 @@ class Mission:
         event_type = random.choice(["asteroid", "accident", "calm"])
         
         if event_type == "asteroid":
-            print("\n🚨 Внимание! Столкновение с астероидным полем!")
+            print("\n Внимание! Столкновение с астероидным полем!")
             ship.hull_status -= 25
             ship.fuel -= 10
             # Случайный член экипажа может пострадать
@@ -48,20 +48,20 @@ class Mission:
             self.events_log.append("Столкновение с астероидом")
             
         elif event_type == "accident":
-            print("\n⚠️ Произошла авария в двигательном отсеке!")
+            print("\n Произошла авария в двигательном отсеке!")
             ship.fuel -= 20
             # Ищем инженера для починки
             engineer = next((m for m in crew if m.role.lower() == "инженер"), None)
             if engineer and engineer.skill_level > 5:
-                print(f"👨‍🔧 Инженер {engineer.name} успешно ликвидировал аварию с минимальными потерями!")
+                print(f" Инженер {engineer.name} успешно ликвидировал аварию с минимальными потерями!")
                 ship.repair(10)
             else:
-                print("💥 В экипаже нет квалифицированного инженера. Корпус поврежден!")
+                print(" В экипаже нет квалифицированного инженера. Корпус поврежден!")
                 ship.hull_status -= 10
             self.events_log.append("Авария в двигателе")
             
         else:
-            print("\n🌌 Полет проходит в штатном режиме. Все системы стабильны.")
+            print("\n Полет проходит в штатном режиме. Все системы стабильны.")
             ship.fuel -= 5
             self.events_log.append("Штатный полет")
 
@@ -82,7 +82,7 @@ for day in range(1, 4):
     print(f"\n--- День {day} ---")
     mars_mission.trigger_random_event(my_ship, crew_list)
     if my_ship.hull_status <= 0 or my_ship.fuel <= 0:
-        print("\n❌ Миссия провалена! Корабль уничтожен или остался без топлива.")
+        print("\n Миссия провалена! Корабль уничтожен или остался без топлива.")
         break
 else:
-    print("\n✅ Первые этапы миссии успешно пройдены!")
+    print("\n Первые этапы миссии успешно пройдены!")
